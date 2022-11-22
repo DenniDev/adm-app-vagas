@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "advance-vagas-dab49"
+  },
+    "targets": {
+    "": {
+      "hosting": {
+        "admin-app-vagas": [
+          "admin-app-vagas"
+        ]
+      }
+    }
+  }
+}

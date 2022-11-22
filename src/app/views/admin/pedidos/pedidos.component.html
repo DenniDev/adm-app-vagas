@@ -1,0 +1,95 @@
+<div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+
+  <div class="rounded-t mb-0 px-4 py-3 border-0" style="margin-top: 30px;">
+    <div class="flex flex-wrap items-center">
+      <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+        <h3 class="font-semibold text-base text-gray-800">
+          Pedidos
+        </h3>
+      </div>
+      <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+
+      </div>
+    </div>
+  </div>
+  <div class="block w-full overflow-x-auto">
+    <!-- Projects table -->
+    <table class="items-center w-full bg-transparent border-collapse">
+      <thead>
+        <tr>
+          <th
+            class="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
+            Data
+          </th>
+          <th
+            class="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
+            nome
+          </th>
+          <th
+            class="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
+            candidato
+          </th>
+          <th
+            class="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
+            Entrega
+          </th>
+          <th
+            class="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
+            Status
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of candidatos" style="border-bottom: 1px solid rgb(211, 211, 211);">
+          <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
+            {{c.data.toDate() | date:'dd/MM/yyyy HH:mm'}}
+          </th>
+          <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
+            R${{c.nome}}
+          </td>
+
+          <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
+            <p><span style="font-weight: 700;">Cliente: </span>{{c.user.name}}</p>
+            <p><span style="font-weight: 700;">CEP: </span>{{c.user.email}}</p>
+            <p><span style="font-weight: 700;">Cidade: </span>{{c.user.cidade}}</p>
+            <p><span style="font-weight: 700;">Rua: </span>{{c.user.rua}}</p>
+            <p><span style="font-weight: 700;">N°: </span>{{c.user.numero}}</p>
+            <p><span style="font-weight: 700;">Bairro: </span>{{c.user.bairro}}</p>
+            <p><span style="font-weight: 700;">Complemento: </span>{{c.user.complemento}}</p>
+          </td>
+
+          <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
+            style="text-align: center;">
+            <p style="margin-bottom: 5px; text-transform: capitalize; text-align: center; font-weight: 700;">
+              {{c.status}}
+            </p>
+            <button *ngIf="c.status == 'aguardando'"
+              class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+              type="button" style="background: rgb(0, 148, 13);" (click)="aceitar(c.id)">
+              Aceitar
+            </button>
+
+            <button *ngIf="c.status == 'aguardando'"
+              class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+              type="button" style="background: rgb(163, 4, 4);" (click)="recusar(c.id)">
+              Recusar
+            </button>
+
+            <button *ngIf="c.status == 'analisando'"
+              class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+              type="button" style="background: rgb(224, 183, 0);" (click)="saiuEntrega(c.id)">
+              Marcar em analisando
+            </button>
+
+            <button *ngIf="c.status == 'contratado'"
+              class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+              type="button" style="background: rgb(224, 119, 0);" (click)="finalizado(c.id)">
+              Contratar
+            </button>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
